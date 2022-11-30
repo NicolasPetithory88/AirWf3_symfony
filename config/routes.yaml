@@ -1,3 +1,26 @@
 controllers:
     resource: ../src/Controller/
     type: attribute
+
+# home1:
+#     path: /
+#     controller: App\Controller\HomeController::accueil
+
+# produit : 
+#     path: /produit/{id<\d{1,3}>?0}
+#     controller: App\Controller\ProduitController::affiche
+    # defaults: // Ici on commente car on traite ce cas de figure directement dans {id} (pas forcement plus clair a lire, au choix)
+    #     id: 0
+    # requirements: 
+    #     id: '\d{1,3}' 
+    #! L'ordre des routes est important , le script est lu de haut en bas, si on avait mis slug en premier sans requirements , la route id ne serait jamais traitée, de même si on decommente les requirements de id , les slugs ne seront jamais pris en compte. Par convention on met les routes statiques en premier ex : produit/inventaire
+#     methods: ['PUT','GET','POST'] #COntrainte de methode
+#     schemes: ['http','https'] #Contrainte de http
+#     host: localhost # Contrainte de domaine
+
+# produit-by-slug : 
+#     path: /produit/{slug}
+#     controller: App\Controller\ProduitController::afficheBySlug
+#     requirements:
+#         slug: '[a-z]*'
+    

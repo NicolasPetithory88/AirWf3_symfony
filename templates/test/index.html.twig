@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello TestController!{% endblock %}
+
+{% block body %}
+
+    <table>
+        <thead>
+            <tr>
+                <th>Couleur</th>
+                <th>Code</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for ligne in liste %}
+            <tr>
+                <td>{{ligne.nom|upper}}</td>
+                <td>{{ligne.code}}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <br>
+{# Asset va chercher dans le dossier public #}
+    <img src="{{ asset('img/1.jpg') }}" alt="">
+
+{% endblock %}
+{% block footer%}Autre Pied de page{% endblock %}
