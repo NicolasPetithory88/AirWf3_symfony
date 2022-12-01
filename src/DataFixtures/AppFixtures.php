@@ -4,6 +4,7 @@ namespace App\DataFixtures;
 
 use Faker\Factory;
 use App\Entity\Ville;
+use App\Entity\Company;
 use App\Entity\Aeroport;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
@@ -16,7 +17,7 @@ class AppFixtures extends Fixture
         $faker = Factory::create('fr_FR');
 
 
-        //Generation a la main avec une boucle
+        //Generation a la main avec une boucle des villes + aeroports
         for($i=1; $i<=5; $i++){
         // $product = new Product();
         $aeroport = new Aeroport();
@@ -43,7 +44,17 @@ class AppFixtures extends Fixture
                 ->setNbPistes($i);
             $manager->persist($aeroport);
             $ville->addAeroport($aeroport);
-        }    
+        } 
+        
+        }
+
+        // Generation des companies
+        for($i=1; $i<=5; $i++){
+            $company = new Company();
+            $company->setNom('Compagnie '.$i)
+                    ->setSigle('Comp '.$i)
+                    ->setEmployes(mt_rand(50,1000));
+            $manager->persist($company);
         }
 
         // equivalent de execute en php natif

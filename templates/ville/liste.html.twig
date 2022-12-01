@@ -9,13 +9,19 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Ville</th>
+                <th>id</th>
+                <th>nom</th>
+                <th>pays</th>
+                <th>departement</th>
             </tr>
         </thead>
         <tbody>
             {% for ville in villes %}
             <tr>
-                <th>{{ville}}</th>
+                <td>{{ville.id}}</td>
+                <td>{{ville.nom}}</td>
+                <td>{{ville.pays}}</td>
+                <td>{{ville.departement}}</td>
             </tr>
             {% endfor %}
         </tbody>

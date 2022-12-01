@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Détails companie {% endblock %}
+
+{% block body %}
+
+<h1>Détails</h1>
+<p>Nom : {{ company.nom }}</p>
+<p>Sigle : {{ company.Sigle }}</p>
+<p>Nombre d'employés : {{ company.employes }}</p>
+
+<a href="{{ path('app_companies') }}" class="btn btn-primary">Retour à la liste des Companies</a>
+
+{% endblock %}

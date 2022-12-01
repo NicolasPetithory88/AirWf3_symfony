@@ -24,7 +24,7 @@ class Ville
     #[ORM\Column(length: 64)]
     private ?string $departement = null;
 
-    #[ORM\OneToMany(mappedBy: 'ville', targetEntity: aeroport::class)]
+    #[ORM\OneToMany(mappedBy: 'ville', targetEntity: Aeroport::class)]
     private Collection $aeroports;
 
     public function __construct()

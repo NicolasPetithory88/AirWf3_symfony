@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Companies{% endblock %}
+
+{% block body %}
+
+    <table class='table'>
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>nom</th>
+                <th>sigle</th>
+                <th>employes</th>
+            </tr>
+        </thead>
+        {% for company in companies %}
+            <tr>
+            <td>{{ company.id }}</td>
+            <td>{{ company.nom }}</td>
+            <td>{{ company.sigle }}</td>
+            <td>{{ company.employes }}</td>
+            <td><a href="{{ path('show_company',{'id': company.id}) }}" class="btn btn-primary">Voir</a></td>
+            </tr>
+        {% endfor %}
+    </table>
+
+{% endblock %}
