@@ -11,6 +11,7 @@
                 <th>nom</th>
                 <th>sigle</th>
                 <th>employes</th>
+                <th>Action</th>
             </tr>
         </thead>
         {% for company in companies %}
@@ -23,5 +24,7 @@
             </tr>
         {% endfor %}
     </table>
+
+    <a href="{{ path('add_company') }}" class="btn btn-primary mt-3">Ajouter une companie</a>
 
 {% endblock %}

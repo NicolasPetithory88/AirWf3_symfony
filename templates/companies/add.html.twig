@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouvelle compagnie{% endblock %}
+
+{% block body %}
+
+<h1>Nouvelle companie</h1>
+
+    {# {{form(formulaire)}} Integralité du formulaire #}
+
+    {# {{ form_start(formulaire, {'attr':{'novalidate':'novalidate'}}) }} Pour tester les champs en back sans les pattern du front #}
+    {{ form_start(formulaire) }}
+    {# {{ form_widget(formulaire) }} Fait apparaitre tous les champs d'un coup, sinon le bouton valider se met en haut#}
+    {{ form_row(formulaire.nom) }} {#Fait apparaitre un champ un par un #}
+    {{ form_row(formulaire.sigle) }}
+    {{ form_row(formulaire.employes) }}
+    <button class="btn btn-primary">Valider</button>
+    {{ form_end(formulaire) }}
+
+{% endblock %}
