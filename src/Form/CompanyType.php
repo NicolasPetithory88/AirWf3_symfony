@@ -16,7 +16,8 @@ class CompanyType extends AbstractType
     {
         $builder
             ->add('nom', TextType::class)
-            ->add('employes', IntegerType::class)
+            ->add('employes', IntegerType::class, [
+                'attr' => ['class' => 'col-3']])
             ->add('sigle', TextType::class)
             // Bouton submit directement dans le add.html.twig
         ;
