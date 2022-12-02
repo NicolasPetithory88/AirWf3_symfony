@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\CompanyRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: CompanyRepository::class)]
 class Company
@@ -14,12 +15,20 @@ class Company
     private ?int $id = null;
 
     #[ORM\Column(length: 128)]
+    // On met les contraintes ici pour qu'en cas de changement des parametres de notre table on visualise directement les contraintes a modifier dans le formulaire
+    #[Assert\NotBlank(['message' => 'Champ obligatoire'])]
     private ?string $nom = null;
 
     #[ORM\Column]
+    #[Assert\NotBlank(['message' => 'Champ obligatoire'])]
     private ?int $employes = null;
 
     #[ORM\Column(length: 32)]
+    #[Assert\Length([
+        'max' => 32,
+        'maxMessage' => '32 caractères maximum'
+    ])]
+    #[Assert\NotBlank(['message' => 'Champ obligatoire'])]
     private ?string $sigle = null;
 
     public function getId(): ?int

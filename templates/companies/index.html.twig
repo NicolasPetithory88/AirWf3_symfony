@@ -11,7 +11,9 @@
                 <th>nom</th>
                 <th>sigle</th>
                 <th>employes</th>
-                <th>Action</th>
+                <th>Details</th>
+                <th>Modification</th>
+                <th>Suppression</th>
             </tr>
         </thead>
         {% for company in companies %}
@@ -21,6 +23,8 @@
             <td>{{ company.sigle }}</td>
             <td>{{ company.employes }}</td>
             <td><a href="{{ path('show_company',{'id': company.id}) }}" class="btn btn-primary">Voir</a></td>
+            <td><a href="{{ path('modify_company',{'id': company.id}) }}" class="btn btn-warning">Modifier</a></td>
+            <td><a href="{{ path('delete_company',{'id': company.id}) }}" class="btn btn-danger">Supprimer</a></td>
             </tr>
         {% endfor %}
     </table>

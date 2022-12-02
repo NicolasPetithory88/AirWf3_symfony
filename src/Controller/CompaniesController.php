@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Company;
 use App\Form\CompanyType;
 use App\Repository\CompanyRepository;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -31,24 +32,46 @@ class CompaniesController extends AbstractController
     }
 
     #[Route('/companies/create', name: 'add_company', methods: ['GET','POST'])]
-    public function add() : Response
+    public function add(Request $request, CompanyRepository $repo) : Response
     {
         $company = new Company();
 
         $formulaire = $this->createForm(CompanyType::class, $company);
+        $formulaire->handleRequest($request);
 
-        return $this->render('companies/add.html.twig', ['formulaire'=> $formulaire->createView()]);
+        if ($formulaire->isSubmitted() && $formulaire->isValid()){
+        
+            $repo->save($company, true);
+            return $this->redirectToRoute('app_companies');        
+        }
+
+        return $this->render('companies/add.html.twig', ['formulaire'=> $formulaire->createView(),
+        'titre' => 'Ajout d\'une companie'
+    ]);
     }
 
 
-    #[Route('/companies/update/{id}', name: 'update_company', methods: ['GET','POST'])]
-    public function update(){
+    #[Route('/companies/modify/{id}', name: 'modify_company', methods: ['GET','POST'])]
+    public function modify(Company $company, Request $request, CompanyRepository $repo){
+        
+        $formulaire = $this->createForm(CompanyType::class, $company);
+        $formulaire->handleRequest($request);
 
+        if($formulaire->isSubmitted() && $formulaire->isValid()){
+            $repo->save($company, true);
+            return $this->redirectToRoute('app_companies');
+        }
+
+        return $this->render('companies/add.html.twig', [
+            'formulaire' => $formulaire->createView(),
+            'titre' => 'Modification de la companie'
+        ]);
     }
 
 
     #[Route('/companies/delete/{id}', name: 'delete_company', methods: ['GET'])]
-    public function delete(){
-
+    public function delete(Company $company, CompanyRepository $repo){
+        $repo->remove($company, true);
+        return $this->redirectToRoute('app_companies');
     }
 }
